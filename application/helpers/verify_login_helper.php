@@ -1,5 +1,28 @@
 <?php
 
+function check_access($rule_id,$menu_id)
+{
+	$CI = get_instance();
+	$result = $CI->db->get_where('user_access_menu',[
+		'rule_id' => $rule_id,
+		'menu_id' => $menu_id
+	])->num_rows();
+
+	if ($result > 0) {
+		return 'checked="checked"';
+	}
+}
+
+function login_status()
+{
+	$CI = get_instance();
+	if ($CI->session->userdata('email')) {
+		redirect('user');
+	} else {
+		redirect('auth/login');
+	}
+}
+
 function is_logged_in()
 {
 	$CI = get_instance();
@@ -22,6 +45,5 @@ function is_logged_in()
 		if ($query->num_rows() < 1) {
 			redirect('auth/blocked');
 		}
-
 	}
 }

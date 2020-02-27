@@ -25,7 +25,7 @@
               							<th scope="row"><?= $i; ?></th>
               							<td><?= $r['rule']; ?></td>
               							<td>
-              								<a class="badge badge-info" href="<?= base_url('admin/roleaccess/'.$id); ?>">Access</a>
+              								<a class="badge badge-info" href="<?= base_url('admin/ruleaccess/'.$id); ?>">Access</a>
                                                                       <a class="badge badge-success" href="#" data-toggle="modal" data-target="#editRuleModal<?= $id; ?>">Edit</a>
 
               								<!-- Edit Menu Modal -->
@@ -69,29 +69,3 @@
 
        </div>
        <!-- End of Main Content -->
-
-       <!-- Add New Menu Modal -->
-       <div class="modal fade" id="addRuleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-             <div class="modal-dialog" role="document">
-                   <div class="modal-content">
-                         <div class="modal-header">
-                               <h5 class="modal-title" id="exampleModalLabel">Add New Rule</h5>
-                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                     <span aria-hidden="true">&times;</span>
-                              </button>
-                       </div>
-                       <form action="<?= base_url('admin/addrule'); ?>" method="post">
-                        <div class="modal-body">
-                              <div class="form-group">
-                                    <input type="text" class="form-control" id="rule" name="rule" placeholder="Rule Name">
-                             </div>
-                      </div>
-                      <div class="modal-footer">
-                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                       <button type="submit" class="btn btn-primary">Add</button>
-                </div>
-         </form>
-  </div>
-</div>
-</div>
-              <!-- End of Add New Menu Modal -->

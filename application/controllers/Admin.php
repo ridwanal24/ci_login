@@ -105,20 +105,42 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function roleaccess($rule_id)
+	public function ruleaccess($rule_id)
 	{
 		$email = $this->session->userdata('email');
 		$data['user'] = $this->db->get_where('user',['email' => $email])->row_array();
-		$data['rule'] = $this->db->get_where('user_rule',['id' => $rule_id])->result_array();
+		$data['rule'] = $this->db->get_where('user_rule',['id' => $rule_id])->row_array();
+		$this->db->where('id !=', 1);
 		$data['menu'] = $this->db->get('user_menu')->result_array();
-
 
 		$data['title'] = 'Rule Access';
 		$this->load->view('_templates/header',$data);
 		$this->load->view('_templates/sidebar');
 		$this->load->view('_templates/topbar');
-		$this->load->view('admin/rule-access');
+		$this->load->view('admin/rule-access',$data);
 		$this->load->view('_templates/footer');
+	}
+
+	public function changeaccess()
+	{
+		$menu_id = $this->input->post('menu_id');
+		$rule_id = $this->input->post('rule_id');
+
+		$data = [
+			'rule_id' => $rule_id,
+			'menu_id' =>$menu_id
+		];
+
+		$result = $this->db->get_where('user_access_menu', $data);
+
+		if ($result->num_rows() < 1) {
+			$this->db->insert('user_access_menu', $data);
+		} else {
+			$this->db->delete('user_access_menu', $data);
+		}
+
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Rule has been update</div>'); 
+
 	}
 
 }

@@ -48,6 +48,26 @@
         <!-- Custom scripts for all pages-->
         <script src="<?= base_url('assets'); ?>/js/sb-admin-2.min.js"></script>
 
+        <script>
+          $('.form-check-input').on('click',function(){
+            const menu_id = $(this).data('menu');
+            const rule_id = $(this).data('rule');
+
+            $.ajax({
+              url: "<?= base_url('admin/changeaccess'); ?>",
+              type: 'post',
+              data: {
+                menu_id: menu_id,
+                rule_id: rule_id
+              },
+              success: function(){
+                document.location.href = "<?= base_url('admin/ruleaccess/') ?>" + rule_id;
+              }
+            });
+
+          });
+        </script>
+
       </body>
 
       </html>
