@@ -125,6 +125,7 @@ class Admin extends CI_Controller {
 	{
 		$menu_id = $this->input->post('menu_id');
 		$rule_id = $this->input->post('rule_id');
+		$menu = $this->db->get_where('user_menu',['id' => $menu_id])->row_array();
 
 		$data = [
 			'rule_id' => $rule_id,
@@ -139,7 +140,7 @@ class Admin extends CI_Controller {
 			$this->db->delete('user_access_menu', $data);
 		}
 
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Rule has been update</div>'); 
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">'.$menu['menu'].': Rule has been update</div>'); 
 
 	}
 

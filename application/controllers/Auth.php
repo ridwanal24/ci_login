@@ -12,6 +12,7 @@ class Auth extends CI_Controller {
 	public function index()
 	{
 		login_status();
+		$this->login();
 	}
 
 	public function login()
@@ -69,6 +70,7 @@ class Auth extends CI_Controller {
 
 	public function registration()
 	{
+		login_status();
 		$this->form_validation->set_rules('name','Name','required|trim');
 		$this->form_validation->set_rules('email','Email','required|trim|valid_email|is_unique[user.email]');
 		$this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[4]|matches[password2]',[
