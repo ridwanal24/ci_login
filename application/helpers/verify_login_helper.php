@@ -25,7 +25,7 @@ function is_logged_in()
 {
 	$CI = get_instance();
 	if (!$CI->session->userdata('email')) {
-		$CI->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Please login as Administrator!</div>');
+		$CI->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Please login!</div>');
 		redirect('auth');	
 	} else {
 		$rule_id = $CI->session->userdata('rule_id');
